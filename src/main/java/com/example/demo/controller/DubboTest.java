@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.HelloConsumer;
+import com.example.demo.dubbo.HelloServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,16 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class DubboTest {
-    private HelloConsumer helloConsumer;
+    private HelloServiceImpl helloServiceImpl;
 
     @Autowired
-    public DubboTest(HelloConsumer helloConsumer){
-        this.helloConsumer = helloConsumer;
+    public DubboTest(HelloServiceImpl helloServiceImpl){
+        this.helloServiceImpl = helloServiceImpl;
     }
 
     @RequestMapping("/hello")
     public String hello(){
-        helloConsumer.say();
-        return "hello";
+        return helloServiceImpl.say();
     }
 }
